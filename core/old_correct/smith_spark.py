@@ -1,7 +1,5 @@
 from math import pi
 
-import numpy as np
-
 from constant import NR, KPCAF, BCAF, KMCAF, KPCAM, BCAM, KMCAM, KMTRC, KMSRM, KMSLM, BTRC, BSRM, BSLM, KPSLM, \
     KPSRM, KPTRC, DCACYT, DT, DR, DCAF
 from grid_info import RADIUS
