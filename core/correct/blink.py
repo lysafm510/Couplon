@@ -1,5 +1,7 @@
 from math import sqrt
 
+import numpy as np
+
 from blink_coeff_matrix import LN_MATRIX, CTRL_AREA, NMAX, TRIANGLE_NUMBER, ABC_MATRIX, AREA, TOTAL_AREA
 from constant import B_INNER, B_INFLOW, B_OUTFLOW, K2, K1, DCAJSR, F, BCSQ, KDCSQ, DCAFSR, CCAFSR, DCAF, \
     DT, H_JSR, UNITEC, MOLNUM
@@ -65,15 +67,13 @@ def sort(n1, n2, n3, i):
     return nod_2, nod_3, column_2, column_3
 
 
-def blink_fn_equation(fn, gn, new_fn, CCACYTO, DCARYR, iteration):
+def blink_fn_equation(fn, gn, CCACYTO, DCARYR, iteration):
     """
     构建钙离子 n+1 步的方程
     """
     # print("构建f(n+1)步的方程")
 
-    for i in range(0, NP):
-        new_fn[i] = 0.
-
+    new_fn = np.zeros(NP, float)   # 存每一次迭代的中间结果fn
     for k in range(0, iteration):
         for i in range(0, NP):  # i代表点， j第j个三角形 N1代表该三角形的其中一点
             cal_one = 0.
@@ -163,12 +163,11 @@ def blink_fn_equation(fn, gn, new_fn, CCACYTO, DCARYR, iteration):
     return new_fn
 
 
-def blink_gn_equation(fn, gn, new_gn, iteration):
+def blink_gn_equation(fn, gn, iteration):
     """
     构建Gn方程
     """
-    for i in range(0, NP):
-        new_gn[i] = 0.
+    new_gn = np.zeros(NP, float)   # 存每一次迭代的中间结果gn
     for k in range(0, iteration):
         for i in range(0, NP):  # i代表点，m代表该点三角形的个数 j第j个三角形 N1代表该三角形的其中一点
             cal_one = 0.

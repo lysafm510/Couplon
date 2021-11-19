@@ -1,5 +1,5 @@
 from math import pi
-
+import numpy as np
 from constant import NR, KPCAF, BCAF, KMCAF, KPCAM, BCAM, KMCAM, KMTRC, KMSRM, KMSLM, BTRC, BSRM, BSLM, KPSLM, \
     KPSRM, KPTRC, DCACYT, DT, DR, DCAF
 from grid_info import RADIUS
@@ -37,15 +37,15 @@ def cytosolic_buffers_equation(c_ca_cyt, c_cam, c_trc, c_srm, c_slm):
     return c_cam, c_trc, c_srm, c_slm
 
 
-def cytosolic_ca_equation(c_ca_cyt, new_c_ca_cyt, med_c_ca_cyt, j_dye, j_buffers, c_ca_store, KRYR2, iteration):
+def cytosolic_ca_equation(c_ca_cyt, j_dye, j_buffers, c_ca_store, KRYR2, iteration):
     # 更新[Ca2+]
+
     # 每个点计算完先放在med中
     # 这次迭代等所有点全部计算完再放到new中
-
+    new_c_ca_cyt = np.zeros(NR, float)
+    med_c_ca_cyt = np.zeros(NR, float)
     for i in range(0, NR):
-        # 第一次迭代用n时刻的值
         new_c_ca_cyt[i] = c_ca_cyt[i]
-        med_c_ca_cyt[i] = 0.0
 
     # 之后每次迭代用上一次迭代求的值
     for k in range(0, iteration):
@@ -100,13 +100,14 @@ def cytosolic_ca_equation(c_ca_cyt, new_c_ca_cyt, med_c_ca_cyt, j_dye, j_buffers
     return c_ca_cyt
 
 
-def cytosolic_gn_equation(c_caf, new_c_caf, med_c_caf, j_dye, iteration):
+def cytosolic_gn_equation(c_caf, j_dye, iteration):
     # 更新[CaF]
 
-    # 第一次迭代用n时刻的值
+    new_c_caf = np.zeros(NR, float)
+    med_c_caf = np.zeros(NR, float)
     for i in range(0, NR):
+        # 第一次迭代用n时刻的值
         new_c_caf[i] = c_caf[i]
-        med_c_caf[i] = 0.0
 
     for k in range(0, iteration):
         for i in range(0, NR):

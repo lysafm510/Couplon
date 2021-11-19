@@ -1,5 +1,5 @@
 # 输入data、figure文件下的保存路径名
-SAVE_PATH = "test_new"
+SAVE_PATH = "test"
 # 请把钙空穴网格以及网格三角形单元数据在grid、triangle_number包下，并输入路径
 TRIANGLE_PATH = "25RyR"
 GRID_PATH = "25RyR_random4"
@@ -58,11 +58,9 @@ smith spark constant
 
 # smith_spark 网格
 NR = 1001  # 点数
-NR0 = 2
-NR1 = NR - 1
 R0 = 0
 R1 = 10000
-DR = (R1 - R0) / (NR - 1)  # dt=10   间距
+DR = (R1 - R0) / (NR - 1)  # dr=10 间距
 
 # pump
 MIUPUMP = 0.208

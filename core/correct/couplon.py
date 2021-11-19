@@ -29,8 +29,6 @@ def do_loop_diffusion():
     # blink赋初值
     fn = np.full(NP, CCAJSR)  # fn,肌质网每一点钙的浓度,为肌质网每一点的初始钙浓度赋值为1
     gn = np.full(NP, CCAF)  # gn,初值1/14
-    new_fn = np.zeros(NP, float)  # 存每一次迭代的中间结果fn
-    new_gn = np.zeros(NP, float)  # 存每一次迭代的中间结果gn
 
     # Spark赋初值
     ini_caf = CCACYTREST * BCAF / (CCACYTREST + KDCAF)
@@ -44,11 +42,6 @@ def do_loop_diffusion():
     c_trc = np.full(NR, ini_trc)
     c_srm = np.full(NR, ini_srm)
     c_slm = np.full(NR, ini_slm)
-
-    new_c_ca_cyt = np.zeros(NR, float)
-    med_c_ca_cyt = np.zeros(NR, float)
-    new_c_caf = np.zeros(NR, float)
-    med_c_caf = np.zeros(NR, float)
 
     j_dye = np.zeros(NR, float)  # spark J_dye项
     j_buffers = np.zeros(NR, float)  # spark J_buffers项
@@ -133,8 +126,8 @@ def do_loop_diffusion():
 
         # 计算blink
         CCACYTO = c_ca_cyt[0]
-        new_fn = blink_fn_equation(fn, gn, new_fn, CCACYTO, d_ca_ryr_jsr, 10)
-        gn = blink_gn_equation(fn, gn, new_gn, 10)
+        new_fn = blink_fn_equation(fn, gn, CCACYTO, d_ca_ryr_jsr, 10)
+        gn = blink_gn_equation(fn, gn, 10)
         for i in range(0, NP):
             fn[i] = new_fn[i]
 
@@ -147,9 +140,8 @@ def do_loop_diffusion():
         c_cam, c_trc, c_srm, c_slm = cytosolic_buffers_equation(c_ca_cyt, c_cam, c_trc, c_srm, c_slm)
         c_ca_store = cca_ryr_inside_store(fn)
         # c_ca_store = 1.0
-        c_ca_cyt = cytosolic_ca_equation(c_ca_cyt, new_c_ca_cyt, med_c_ca_cyt, j_dye, j_buffers, c_ca_store,
-                                         d_ca_ryr_cyto, 10)
-        c_caf = cytosolic_gn_equation(c_caf, new_c_caf, med_c_caf, j_dye, 10)
+        c_ca_cyt = cytosolic_ca_equation(c_ca_cyt, j_dye, j_buffers, c_ca_store, d_ca_ryr_cyto, 10)
+        c_caf = cytosolic_gn_equation(c_caf, j_dye, 10)
 
         if (fmod(current_step, SAVE_INTERVAL) == 0) or (times == END_TIME):
             with open(blink_fn_path + "/Fn_" + str(current_step).zfill(8) + ".csv", "w", newline='') as file:
