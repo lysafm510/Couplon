@@ -5,13 +5,13 @@ plt.rcParams["font.family"] = "Microsoft Yahei"
 plt.rcParams['font.sans-serif'] = ['SimHei']
 plt.rcParams['axes.unicode_minus'] = False
 
-path1 = "25RyR_Random6_ISO_20%"
-path2 = "25RyR_Random6_ISO_50%"
-path3 = "25RyR_Random6_ISO_100%"
+path1 = "25RyR_Random6_ISO_100%"
+path2 = "25RyR_Random6_ISO_100%_new"
 
-paths = [path1, path2, path3]
-label_list = ["DCAFSR下降到1/5", "DCAFSR下降到1/4", "DCAFSR下降到1/3"]
-description = "6通道_ISO刺激"
+paths = [path1, path2]
+label_list = ["更新前","更新后","DCAFSR不变"]
+# 文件描述
+description = "ISO刺激"
 
 
 # *****************************************************************************
@@ -48,6 +48,7 @@ def plot(label_list, type, description, paths):
     plt.title(type + " _ " + description)
     plt.legend(labels=label_list)
     plt.xlim((0, 50000))
+    # plt.xlim((0, max))
     plt.savefig("../figure/Transients_" + type + "_" + description + ".jpg")
     plt.show()
 

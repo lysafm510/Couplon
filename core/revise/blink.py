@@ -1,7 +1,5 @@
 from math import sqrt
-
 import numpy as np
-
 from blink_coeff_matrix import LN_MATRIX, CTRL_AREA, NMAX, TRIANGLE_NUMBER, ABC_MATRIX, AREA, TOTAL_AREA
 from constant import B_INNER, B_INFLOW, B_OUTFLOW, K2, K1, DCAJSR, F, BCSQ, KDCSQ, DCAFSR, CCAFSR, DCAF, \
     DT, H_JSR, UNITEC, MOLNUM

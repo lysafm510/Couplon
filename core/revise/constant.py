@@ -1,8 +1,8 @@
 # 输入data、figure文件下的保存路径名
-SAVE_PATH = "test_new"
+SAVE_PATH = "revise"
 # 请把钙空穴网格以及网格三角形单元数据在grid、triangle_number包下，并输入路径
-TRIANGLE_PATH = "25RyR"
-GRID_PATH = "25RyR_random4"
+TRIANGLE_PATH = "4RyR_revise"
+GRID_PATH = "4RyR_revise"
 START_STEP = 0  # 从多少步开始，初始从第0步开始。如果有10000步数据，从10001步开始
 
 RELEASE_TIME = 2 * 10 ** -2  # 0.02s,这个就是ryr通道开放的时间，后80毫秒是恢复的
