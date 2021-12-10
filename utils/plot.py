@@ -1,33 +1,41 @@
 import matplotlib.pyplot as plt
 import csv
+from matplotlib import font_manager
 
-plt.rcParams["font.family"] = "Microsoft Yahei"
-plt.rcParams['font.sans-serif'] = ['SimHei']
+font_manager.fontManager.addfont('../fonts/time-simsun.ttf')
+
+plt.rcParams['font.sans-serif'] = 'Times New Roman + Simsun'
 plt.rcParams['axes.unicode_minus'] = False
+# plt.rcParams["font.family"] = "Microsoft Yahei"
+# plt.rcParams['font.sans-serif'] = ['SimHei']
 
-path1 = "25RyR_Random6_ISO_100%"
-path2 = "25RyR_Random6_ISO_100%_new"
+path1 = "25RyR_random6_DCAFSR_20%"
+path2 = "25RyR_random6_DCAFSR_25%"
+path3 = "25RyR_random6_DCAFSR_33%"
+path4 = "25RyR_random6_DCAFSR_50%"
+path5 = "25RyR_random6_DCAFSR_100%"
+paths = [path1, path2, path3, path4, path5]
 
-paths = [path1, path2]
-label_list = ["更新前","更新后","DCAFSR不变"]
+label_list = ["DCAFSR下降到20%", "DCAFSR下降到25%", "DCAFSR下降到33%", "DCAFSR下降到50%", "DCAFSR下降到100%"]
 # 文件描述
-description = "ISO刺激"
+filename = "钙瞬变_6通道"
+title = "6通道"
 
 
 # *****************************************************************************
-def plot(label_list, type, description, paths):
+def plot(label_list, type, filename, title, paths):
     """
     绘制x:time y:concentration曲线图
 
     :param label_list: legend图例
     :param type: ['fn','gn']
-    :param description: 文件描述
+    :param filename: 文件名前缀
+    :param title: 标题前缀
     :param paths: 读取数据路径数组
     :return:
     """
     n = len(paths)
     plt.figure()
-    plt.grid()
     max = 0
     save_steps = 100
     for i in range(0, n):
@@ -45,14 +53,19 @@ def plot(label_list, type, description, paths):
 
         if j * save_steps > max:
             max = j * save_steps
-    plt.title(type + " _ " + description)
-    plt.legend(labels=label_list)
+    plt.title(type + "   " + title, fontsize=14)
+    plt.legend(labels=label_list, fontsize=10, loc=2)
     plt.xlim((0, 50000))
     # plt.xlim((0, max))
-    plt.savefig("../figure/Transients_" + type + "_" + description + ".jpg")
+    plt.xticks(fontsize=13)
+    plt.yticks(fontsize=13)
+    plt.rcParams['xtick.direction'] = 'in'
+    plt.rcParams['ytick.direction'] = 'in'
+    plt.grid(linestyle="--")
+    plt.savefig("../figure/" + filename + "_" + type + ".png")
     plt.show()
 
 
 if __name__ == '__main__':
-    plot(label_list, "fn", description, paths)
-    plot(label_list, "gn", description, paths)
+    plot(label_list, "fn", filename, title, paths)
+    plot(label_list, "gn", filename, title, paths)
