@@ -1,6 +1,6 @@
 import pandas as pd
 
-path = "25RyR_random6_DCAFSR_100%"
+path = "25RyR_random6_DCAFSR_25%"
 
 data_frame = pd.read_csv("../data/" + path + "/avg_gn_jsr.csv", header=None)
 data = data_frame[0].tolist()

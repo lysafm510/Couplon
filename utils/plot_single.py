@@ -9,10 +9,10 @@ plt.rcParams['axes.unicode_minus'] = False
 # plt.rcParams["font.family"] = "Microsoft Yahei"
 # plt.rcParams['font.sans-serif'] = ['SimHei']
 
-path = "25RyR_Random6_ISO_100%_new"
+path = "25RyR_random6_DCAFSR_100%"
 
 # 文件描述
-filename = "病理ISO_6通道"
+filename = "ppt"
 title = "ISO病理"
 
 
@@ -43,7 +43,7 @@ def plot(type, filename, title, path):
             j = j + 1
     plt.plot(x, y, linewidth=1)
 
-    plt.title(type + "   " + title, fontsize=14)
+    # plt.title(type + "   " + title, fontsize=14)
     plt.xlim((0, 50000))
     # plt.xlim((0, j * save_steps))
     plt.xticks(fontsize=13)
@@ -51,6 +51,9 @@ def plot(type, filename, title, path):
     plt.rcParams['xtick.direction'] = 'in'
     plt.rcParams['ytick.direction'] = 'in'
     plt.grid(linestyle="--")
+    plt.xticks([0,10000,20000,30000,40000,50000],[0,0.02,0.04,0.06,0.08,0.1])
+    plt.xlabel("time(s)",fontsize=13)
+    plt.ylabel("concentration",fontsize=13)
     plt.savefig("../figure/" + filename + "_" + type + ".png")
     plt.show()
 

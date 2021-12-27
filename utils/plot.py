@@ -55,8 +55,8 @@ def plot(label_list, type, filename, title, paths):
             max = j * save_steps
     plt.title(type + "   " + title, fontsize=14)
     plt.legend(labels=label_list, fontsize=10, loc=2)
-    plt.xlim((0, 50000))
-    # plt.xlim((0, max))
+    # plt.xlim((0, 50000))
+    plt.xlim((0, max))
     plt.xticks(fontsize=13)
     plt.yticks(fontsize=13)
     plt.rcParams['xtick.direction'] = 'in'
