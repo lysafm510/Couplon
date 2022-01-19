@@ -51,9 +51,9 @@ def plot(type, filename, title, path):
     plt.rcParams['xtick.direction'] = 'in'
     plt.rcParams['ytick.direction'] = 'in'
     plt.grid(linestyle="--")
-    plt.xticks([0,10000,20000,30000,40000,50000],[0,0.02,0.04,0.06,0.08,0.1])
-    plt.xlabel("time(s)",fontsize=13)
-    plt.ylabel("concentration",fontsize=13)
+    plt.xticks([0, 10000, 20000, 30000, 40000, 50000], [0, 0.02, 0.04, 0.06, 0.08, 0.1])
+    plt.xlabel("time(s)", fontsize=13)
+    plt.ylabel("concentration", fontsize=13)
     plt.savefig("../figure/" + filename + "_" + type + ".png")
     plt.show()
 

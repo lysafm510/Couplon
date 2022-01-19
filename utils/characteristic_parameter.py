@@ -1,6 +1,6 @@
 import pandas as pd
 
-path = "25RyR_random6_DCAFSR_25%"
+path = "25RyR_ISO_random8"
 
 data_frame = pd.read_csv("../data/" + path + "/avg_gn_jsr.csv", header=None)
 data = data_frame[0].tolist()
@@ -36,7 +36,7 @@ def cal_t50():
         right_concentration = data[index]
         half_time = index * 100 * dt - (right_concentration - half_concentration) * dt / (
                 right_concentration - left_concentration)
-        print("t50：%s" % (half_time - peak_time))
+        print("t50：%s" % ((half_time - peak_time) * 1000))
     print("******************************************* ")
     print()
 
@@ -51,7 +51,7 @@ def cal_FDHM():
     left_concentration = data[index - 1]
     right_concentration = data[index]
     half_time1 = index * 100 * dt - (right_concentration - half_concentration) * dt / (
-                right_concentration - left_concentration)
+            right_concentration - left_concentration)
     print("下降到一半时间：%s" % half_time1)
 
     index = 100
@@ -65,7 +65,7 @@ def cal_FDHM():
         half_time2 = index * 100 * dt - (right_concentration - half_concentration) * dt / (
                 right_concentration - left_concentration)
         print("回升到一半时间：%s" % half_time2)
-        print("FDHM：%s" % (half_time2 - half_time1))
+        print("FDHM：%s" % ((half_time2 - half_time1) * 1000))
 
 
 if __name__ == '__main__':

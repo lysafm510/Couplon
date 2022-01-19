@@ -2,7 +2,7 @@ import numpy as np
 import linecache
 import os
 
-path = "25RyR_random6_DCAFSR_33%"
+path = "25RyR_ISO_random8"
 
 
 def get_avg_line():
