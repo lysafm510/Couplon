@@ -183,10 +183,10 @@ def do_loop_diffusion():
             file.close()
             print("数据写入Spark_" + str(current_step).zfill(8) + ".csv...")
 
-            if abs(times - RELEASE_TIME) <= DT / 2:
-                d_ca_ryr_jsr = 0
-                d_ca_ryr_cyto = 0
-                print("关闭RyR通道")
+        if abs(times - RELEASE_TIME) <= DT / 2:
+            d_ca_ryr_jsr = 0
+            d_ca_ryr_cyto = 0
+            print("关闭RyR通道")
 
 
 print(SAVE_PATH)
