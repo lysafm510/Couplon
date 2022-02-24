@@ -59,7 +59,6 @@ smith spark constant
 
 # smith_spark 网格
 NR = 1001  # 点数
-NR0 = 2
 R0 = 0
 R1 = 10000
 DR = (R1 - R0) / (NR - 1)  # dr=10   间距
